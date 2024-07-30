@@ -1,0 +1,13 @@
+<ul>
+    {% for item in items %}
+        {% if item.parent_id is None %}
+            <p>{{ menu }}</p>
+        {% endif %}
+      <li>
+        <a href="?{{ menu }}={{ item.id }}">{{ item.title }}</a>
+      </li>
+      {% if item.child_items %}
+        {% include 'menu/draw_menu.html' with items=item.child_items %} {# вызов draw_menu к дочерним элементам #}
+      {% endif %}
+    {% endfor %}
+</ul>
